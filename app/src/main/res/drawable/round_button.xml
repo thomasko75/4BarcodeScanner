@@ -18,7 +18,7 @@
 <item android:state_pressed="true">
     <shape android:shape="rectangle">
         <corners android:radius="1000dp"/>
-        <solid android:color="1B1"/>
+        <solid android:color="#1B1"/>
         <stroke
             android:width="6dip"
             android:color="#000000" />
