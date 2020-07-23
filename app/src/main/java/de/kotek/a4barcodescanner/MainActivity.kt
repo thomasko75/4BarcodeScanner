@@ -5,8 +5,10 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.textclassifier.TextLinks
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,9 +22,34 @@ private lateinit var detector: BarcodeDetector
 private lateinit var cameraSource: CameraSource
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        btn_Scan.setOnTouchListener { v, event ->
+            val action = event.action
+            when (action) {
+                MotionEvent.ACTION_DOWN -> {
+                    Toast.makeText(this@MainActivity, "Down", Toast.LENGTH_SHORT)
+
+                }
+                MotionEvent.ACTION_UP -> {
+                    Toast.makeText(this@MainActivity, "up", Toast.LENGTH_SHORT)
+
+                }
+                MotionEvent.ACTION_CANCEL -> {
+                    Toast.makeText(this@MainActivity, "Chanceled", Toast.LENGTH_SHORT)
+                }
+
+                else -> {
+                    Toast.makeText(this@MainActivity, "else", Toast.LENGTH_SHORT)
+
+                }
+
+            }
+            true
+        }
 
         detector = BarcodeDetector.Builder(this@MainActivity).build()
         detector.setProcessor(object :Detector.Processor<Barcode>{
@@ -99,4 +126,10 @@ class MainActivity : AppCompatActivity() {
         cameraSource.release()
     }
 
+    private fun btn_Hold() {
+
+    }
+
 }
+
+
